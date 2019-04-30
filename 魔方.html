@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+
+        /* 
+        <div class="square">
+        <div>
+            <section class="front-plane">
+                <section class="center"></section>
+            </section>
+        
+            对square设定perspective属性，相当于将square设定为窗口，透过这个窗口去看3D元素。
+        如果不设定perspective的话，则在旋转中，元素没有改变大小的效果，不够真实。
+            对square下的div，其就是所有小块的父元素，让它执行动画，还要设定好转换的风格，因为
+        默认的转换风格是2D的。
+            plane属性的是六个不同的面，设置成父元素的目的是让每个面的小块继承不同面的相应属性。
+        
+         */
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* 给整个页面添加背景色，这个比加在body标签上更容易达成全屏的效果，
+        因为body的大小不好确定。
+         */
+        html {
+            background-color: lightskyblue;
+        }
+
+        /* 
+        这个元素充当一个定位点，因为所有其他的元素都是以他为父元素，
+        都会从它的位置来定位，这也是这个元素的主要作用。
+         */
+        .square {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            margin: 200px auto;
+
+            /* 通过改小perspective的值，可以实现很绚丽的效果。 */
+            perspective: 2000px;
+            /* background-color: black; */
+            /* perspective: 100px; */
+            /* transform: rotate3d(1, 1, 1, 60deg); */
+
+            /* transform-origin: 50% 50% 50%; */
+
+
+            padding: 50px;
+
+            /* box-shadow: 0 0 200px black; */
+        }
+
+        /* 
+        这个元素包含了六个面和面上的所有小块，整个动画都是以它为基础。
+        动画旋转的就是这个元素，所有的小块其实都是静止的，唯一可以动的只是这个元素而已，
+        不过因为它包含其他元素，所以达成所有元素一起动的效果。
+        */
+        .square>div {
+            animation: move 5s linear infinite;
+            transform-style: preserve-3d;
+        }
+
+        @keyframes move {
+            from {
+                /* transform: rotateX(0deg) rotateY(0deg); */
+                /* transform: rotate3d(1, 1, 1, 0deg); */
+            }
+
+            to {
+                transform: rotate3d(1, 1, 1, 360deg);
+            }
+        }
+
+        /* 
+六个面和54个小块都是section标签，所以统一设置属性相同的标签。
+每个面和小块都是基于square来定位的，54个小块大小都是一样的，边界样式都是一样的。
+ */
+        section {
+            width: 100px;
+            height: 100px;
+            /* border: 2px solid white; */
+            /* background-color: green; */
+            /* opacity: 0.6; */
+            position: absolute;
+            /* top: 200px;
+            left: 200px; */
+            border-radius: 10px;
+            /* animation: color 5s linear infinite; */
+
+            /* visibility: hidden; */
+            /* backface-visibility: hidden; */
+            /* visibility: hidden; */
+        }
+
+        /* 
+        这个是设置每一个面上的9个小块的。继承父元素的大小即可，边框、
+        透明度、渐变属性都是一样的。
+ */
+        section>section {
+            width: 100%;
+            height: 100%;
+            border: 3px solid white;
+
+            opacity: .3;
+            transition: all 0.12s ease-in;
+
+
+            /* 
+            在本demo中，对魔方颜色两种设置，一是每个面上单独设置好了自己的颜色，二是通过动画
+            动态的改变整个模仿的颜色，下面的animition就是对于动画的开关，通过对这一句的注释与否
+            就能实现两种效果的转换。
+ */
+            /* animation: color 5s linear infinite; */
+        }
+
+        @keyframes color {
+            0% {
+                background-color: rgb(248, 9, 9);
+            }
+
+            10% {
+                background-color: rgb(241, 160, 10);
+            }
+
+            20% {
+                background-color: rgb(122, 245, 8);
+            }
+
+            30% {
+                background-color: rgb(48, 241, 10);
+            }
+
+            40% {
+                background-color: rgb(14, 238, 107);
+            }
+
+            50% {
+                background-color: rgb(8, 241, 241);
+            }
+
+            60% {
+                background-color: rgb(11, 105, 245);
+            }
+
+            70% {
+                background-color: rgb(69, 6, 243);
+            }
+
+            80% {
+                background-color: rgb(228, 7, 248);
+            }
+
+            90% {
+                background-color: rgb(245, 6, 117);
+            }
+
+            100% {
+                background-color: rgb(252, 8, 8);
+            }
+        }
+
+        /* 
+        下面六个plane是关于魔方六个面的设置，通过设置每个面，达到形成一个平面的效果。
+        虽然代码中是称为一个面，但是其实每一个plane都也只是一个小块而已，不过因为它是
+        所有小块的父元素，所以这样称呼。
+        对每一个面进行平移和旋转，再对其子元素进行特定的移动，即可实现六个独特的面和每个面上
+        9个小块的效果。
+
+ */
+        /* 
+        注意：最开始，我是想以一个squre来得到所有的54个小块，可以通过给每个元素添加多个类名，
+        在每个类名中定义不同的格式，可是我发现，虽然同一元素可是继承多个类名中的所有css样式，
+        可是重复的css样式属性会被覆盖，也就是后面的css样式会覆盖掉前面类名中相同css样式的值，
+        所以这也就相当于我还是要写54中不同的css样式。
+        后来发现通过对每个面添加一个父元素把它的9个小块包含起来，之后，子元素就会在父元素样式的
+        基础上再进行设置，也就相当于继承了父元素的样式。这是一个关于样式和布局的小技巧。
+  */
+        .front-plane {
+            transform: translateZ(150px);
+        }
+
+        .front-plane>section {
+            background-color: purple;
+        }
+
+        .back-plane {
+            transform: translateZ(-150px) rotate3d(0, 1, 0, 180deg);
+        }
+
+        .back-plane>section {
+            background-color: green;
+        }
+
+        .left-plane {
+            transform: translateX(-150px) rotate3d(0, 1, 0, -90deg);
+        }
+
+        .left-plane>section {
+            background-color: red;
+        }
+
+        .right-plane {
+            transform: translateX(150px) rotate3d(0, 1, 0, 90deg);
+        }
+
+        .right-plane>section {
+            background-color: orange;
+        }
+
+        .top-plane {
+            transform: translateY(-150px) rotate3d(1, 0, 0, 90deg);
+        }
+
+        .top-plane>section {
+            background-color: yellow;
+        }
+
+        .bottom-plane {
+            transform: translateY(150px) rotate3d(1, 0, 0, -90deg);
+        }
+
+        .bottom-plane>section {
+            background-color: blue;
+        }
+
+        /* 定义每个平面上的九个位置各自的位置，因为每个平面都已经进行了不同的转换，
+        所以此时，这9个小块都会根据其父元素而进行独特的变换。
+         */
+        .center {
+            /* visibility: hidden; */
+        }
+
+        .top {
+            transform: translateY(-100px);
+
+        }
+
+        .bottom {
+            transform: translateY(100px);
+        }
+
+        .left {
+            transform: translateX(-100px);
+        }
+
+        .right {
+            transform: translateX(100px);
+        }
+
+        .left-top {
+            transform: translateY(-100px) translateX(-100px);
+        }
+
+        .left-bottom {
+            transform: translateY(100px) translateX(-100px);
+        }
+
+        .right-top {
+            transform: translateY(-100px) translateX(100px);
+        }
+
+        .right-bottom {
+            transform: translateY(100px) translateX(100px);
+        }
+
+        section>section:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="square">
+        <div>
+            <section class="front-plane">
+                <section class="center"></section>
+                <section class="left"></section>
+                <section class="right"></section>
+                <section class="top"></section>
+                <section class="bottom"></section>
+                <section class="left-top"></section>
+                <section class="left-bottom"></section>
+                <section class="right-top"></section>
+                <section class="right-bottom"></section>
+            </section>
+
+            <section class="back-plane">
+                <section class="center"></section>
+                <section class="left"></section>
+                <section class="right"></section>
+                <section class="top"></section>
+                <section class="bottom"></section>
+                <section class="left-top"></section>
+                <section class="left-bottom"></section>
+                <section class="right-top"></section>
+                <section class="right-bottom"></section>
+
+            </section>
+
+            <section class="left-plane">
+                <section class="center"></section>
+                <section class="left"></section>
+                <section class="right"></section>
+                <section class="top"></section>
+                <section class="bottom"></section>
+                <section class="left-top"></section>
+                <section class="left-bottom"></section>
+                <section class="right-top"></section>
+                <section class="right-bottom"></section>
+            </section>
+
+            <section class="right-plane">
+                <section class="center"></section>
+                <section class="left"></section>
+                <section class="right"></section>
+                <section class="top"></section>
+                <section class="bottom"></section>
+                <section class="left-top"></section>
+                <section class="left-bottom"></section>
+                <section class="right-top"></section>
+                <section class="right-bottom"></section>
+            </section>
+
+            <section class="top-plane">
+                <section class="center"></section>
+                <section class="left"></section>
+                <section class="right"></section>
+                <section class="top"></section>
+                <section class="bottom"></section>
+                <section class="left-top"></section>
+                <section class="left-bottom"></section>
+                <section class="right-top"></section>
+                <section class="right-bottom"></section>
+            </section>
+
+            <section class="bottom-plane">
+                <section class="center"></section>
+                <section class="left"></section>
+                <section class="right"></section>
+                <section class="top"></section>
+                <section class="bottom"></section>
+                <section class="left-top"></section>
+                <section class="left-bottom"></section>
+                <section class="right-top"></section>
+                <section class="right-bottom"></section>
+            </section>
+
+
+        </div>
+
+
+    </div>
+
+</body>
+<script>
+    var square = document.querySelector(".square");
+    console.log(square);
+
+    console.log(square.style.transformOrigin);
+</script>
+
+</html>
