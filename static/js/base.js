@@ -51,7 +51,7 @@ var board = document.querySelector(".board");
 
 //切换背景
 function changeBackImg() {
-    var backImgs = ['../resources/image/backImg.jpg', '../resources/image/backImg2.jpg', '../resources/image/backImg3.jpg'];
+    var backImgs = ['../resources/image/backImg.jpg', 'static/resources/image/backImg2.jpg', '../resources/image/backImg3.jpg'];
     var backImg = '';
     var main = document.querySelector(".main");
     curIndex++;
@@ -63,14 +63,14 @@ function changeBackImg() {
     // main.setAttribute('background-image-url',backImg[curIndex]);
     switch (curIndex) {
         case 0:
-            main.style.backgroundImage = 'url(resources/image/backImg.jpg)';
+            main.style.backgroundImage = 'url(../static/resources/image/backImg.jpg)';
             // background-image: url(../resources/image/backImg.jpg);
             break;
         case 1:
-            main.style.backgroundImage = 'url(resources/image/backImg2.jpg)';
+            main.style.backgroundImage = 'url(../static/resources/image/backImg2.jpg)';
             break;
         case 2:
-            main.style.backgroundImage = 'url(resources/image/backImg3.jpg)';
+            main.style.backgroundImage = 'url(../static/resources/image/backImg3.jpg)';
             break;
     }
 
