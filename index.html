@@ -56,7 +56,7 @@
                 <source src="http://www.ytmp3.cn/down/34716.mp3">
             </audio> -->
 
-            <audio controls autoplay="autoplay" loop="loop">
+            <audio   loop="loop">
                     <source src="http://www.ytmp3.cn/down/34716.mp3" type="audio/mpeg">
             </audio>
             <div id="bgmvideo"></div>
@@ -123,6 +123,9 @@
         var hold = 1;
 
         canvas.click(function(e) {
+            var audio = document.querySelector('audio');
+            audio.load()
+            audio.play()
             var offset = canvas.offset(), x, y;
             x = e.pageX - offset.left;
             y = e.pageY - offset.top;
