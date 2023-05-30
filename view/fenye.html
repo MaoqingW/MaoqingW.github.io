@@ -1,0 +1,77 @@
+<!--
+ * @Author: WangMaoqing 1035311011@qq.com
+ * @Date: 2023-05-30 20:22:01
+ * @LastEditors: WangMaoqing 1035311011@qq.com
+ * @LastEditTime: 2023-05-30 20:55:03
+ * @FilePath: /分页模版 /index.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      body {
+        text-align: center;
+      }
+      section {
+        margin: auto;
+        border: 1px solid lightgray;
+        width: 900px;
+        height: 1000px;
+      }
+      section:not(:last-child) {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="title-paper">
+      <h1>四年级2班-朱小萌-数学-个性化错题本</h1>
+    </section>
+
+    <section class="question-paper">
+      <div class="container">
+        <div class="question">4前面的一个数是{#blank#}1{#/blank#}，后面的一个数是{#blank#}2{#/blank#}</div>
+      </div>
+    </section>
+  </body>
+
+  <script>
+    function request() {
+      return new Promise((resolve, reject) => {
+        fetch(
+          `https://sclass-dev.jinmaoedu.com/admin-api/qc/cloud/getQuestionList?pageNo=1&pageSize=100&chapterId=23336&stageId=1&subjectId=3`,
+          {
+            method: "get",
+            headers: {
+              Authorization: `Bearer test-2-2`,
+            },
+          }
+        )
+          .then((res) => res.json())
+          .then((res) => resolve(res.data));
+      });
+    }
+  </script>
+
+  <script>
+    window.onload = async () => {
+      const paper = document.querySelector('.question-paper')
+
+
+      const data = await request();
+      const doms = data.list.map(item=>{
+        const container = document.createElement('div')
+        container.setAttribute('class',container)
+
+        container.innerHTML = item.stem
+        paper.appendChild(container)
+      })
+    };
+  </script>
+</html>
