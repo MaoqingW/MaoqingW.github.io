@@ -2,7 +2,7 @@
  * @Author: WangMaoqing 1035311011@qq.com
  * @Date: 2023-05-30 20:22:01
  * @LastEditors: WangMaoqing 1035311011@qq.com
- * @LastEditTime: 2023-05-30 20:55:03
+ * @LastEditTime: 2023-05-30 21:02:09
  * @FilePath: /分页模版 /index.html
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -45,11 +45,11 @@
     function request() {
       return new Promise((resolve, reject) => {
         fetch(
-          `https://sclass-dev.jinmaoedu.com/admin-api/qc/cloud/getQuestionList?pageNo=1&pageSize=100&chapterId=23336&stageId=1&subjectId=3`,
+          `https://sclass.jinmaoedu.com/admin-api/qc/cloud/getQuestionList?pageNo=1&pageSize=10&chapterId=168709&stageId=1&subjectId=2`,
           {
             method: "get",
             headers: {
-              Authorization: `Bearer test-2-2`,
+              Authorization: `Bearer a7a044967aac43a08dcccdfdf35f98a1`,
             },
           }
         )
