@@ -2,7 +2,7 @@
  * @Author: WangMaoqing 1035311011@qq.com
  * @Date: 2023-05-30 20:22:01
  * @LastEditors: WangMaoqing 1035311011@qq.com
- * @LastEditTime: 2023-05-31 10:46:58
+ * @LastEditTime: 2023-05-31 10:54:30
  * @FilePath: /分页模版 /index.html
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -28,33 +28,59 @@
         margin-bottom: 20px;
       }
     </style>
+    <script>
+      function request() {
+        return new Promise((resolve, reject) => {
+          fetch(
+            `https://sclass.jinmaoedu.com/admin-api/qc/cloud/getQuestionList?pageNo=1&pageSize=100&chapterId=23336&stageId=1&subjectId=3`,
+            {
+              method: "get",
+              headers: {
+                Authorization: `Bearer a7a044967aac43a08dcccdfdf35f98a1`,
+              },
+            }
+          )
+            .then((res) => res.json())
+            .then((res) => resolve(res.data));
+        });
+      }
+    </script>
+    <script>
+      // window.onload = async () => {
+
+      const paper = document.createElement("div");
+      paper.setAttribute('class','question-paper')
+      request().then((data) => {
+        const doms = data.list.map((item) => {
+          const container = document.createElement("div");
+          container.setAttribute("class", container);
+
+          container.innerHTML = item.stem;
+          paper.appendChild(container);
+        });
+
+        document.body.appendChild(paper)
+      });
+
+      // const data = await request();
+      // const doms = data.list.map(item=>{
+      //   const container = document.createElement('div')
+      //   container.setAttribute('class',container)
+
+      //   container.innerHTML = item.stem
+      //   paper.appendChild(container)
+      // })
+      // };
+    </script>
   </head>
   <body>
     <section class="title-paper">
       <h1>四年级2班-朱小萌-数学-个性化错题本</h1>
     </section>
-    <section class="question-paper"></section>
+    <!-- <section class="question-paper"></section> -->
   </body>
 
-  <script>
-    function request() {
-      return new Promise((resolve, reject) => {
-        fetch(
-          `https://sclass.jinmaoedu.com/admin-api/qc/cloud/getQuestionList?pageNo=1&pageSize=100&chapterId=23336&stageId=1&subjectId=3`,
-          {
-            method: "get",
-            headers: {
-              Authorization: `Bearer a7a044967aac43a08dcccdfdf35f98a1`,
-            },
-          }
-        )
-          .then((res) => res.json())
-          .then((res) => resolve(res.data));
-      });
-    }
-  </script>
-
-  <script>
+  <!-- <script>
     // window.onload = async () => {
 
     const paper = document.querySelector(".question-paper");
@@ -83,5 +109,5 @@
     //   paper.appendChild(container)
     // })
     // };
-  </script>
+  </script> -->
 </html>
