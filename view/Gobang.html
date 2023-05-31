@@ -1,77 +1,314 @@
-<!--
- * @Author: WangMaoqing 1035311011@qq.com
- * @Date: 2023-05-30 20:22:01
- * @LastEditors: WangMaoqing 1035311011@qq.com
- * @LastEditTime: 2023-05-30 21:02:09
- * @FilePath: /分页模版 /index.html
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+<html>
 
-    <style>
-      body {
-        text-align: center;
-      }
-      section {
-        margin: auto;
-        border: 1px solid lightgray;
-        width: 900px;
-        height: 1000px;
-      }
-      section:not(:last-child) {
-        margin-bottom: 20px;
-      }
-    </style>
-  </head>
-  <body>
-    <section class="title-paper">
-      <h1>四年级2班-朱小萌-数学-个性化错题本</h1>
-    </section>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/css/base.css" type="text/css">
+    <!-- <link rel="javascript" href="js/base.js"> -->
 
-    <section class="question-paper">
-      <div class="container">
-        <div class="question">4前面的一个数是{#blank#}1{#/blank#}，后面的一个数是{#blank#}2{#/blank#}</div>
-      </div>
-    </section>
-  </body>
+</head>
 
-  <script>
-    function request() {
-      return new Promise((resolve, reject) => {
-        fetch(
-          `https://sclass.jinmaoedu.com/admin-api/qc/cloud/getQuestionList?pageNo=1&pageSize=10&chapterId=168709&stageId=1&subjectId=2`,
-          {
-            method: "get",
-            headers: {
-              Authorization: `Bearer a7a044967aac43a08dcccdfdf35f98a1`,
-            },
-          }
-        )
-          .then((res) => res.json())
-          .then((res) => resolve(res.data));
-      });
-    }
-  </script>
+<body>
+    <audio class="sound_move" src="../static/resources/sound/move.wav"></audio>
+    <div class="main">
 
-  <script>
-    window.onload = async () => {
-      const paper = document.querySelector('.question-paper')
+        <div class="board" >
+
+        </div>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
+        <div class="controller">
+            <button class="play" onclick="play()">
+                开始游戏
+            </button>
+            <button class="moveback" onclick="moveback()">
+                悔棋
+            </button>
+            <button class="playagain" onclick="playagain()">
+                再来一局
+            </button>
+            <button onclick="changeBackImg()">
+                切换背景
+            </button>
+            <div class="progressBar">
+                <button class="opacityController add" onclick="addOpacity()">+</button>
+                <progress value="0.8" max='1'>您的浏览器不支持progress元素</progress>
+                <button class="opacityController sub" onclick="subOpacity()">-</button>
+            </div>
+            
+            <!-- <br /><br /> -->
+            <!-- <input type="button" value="开始" onclick="goprogress()" /> -->
+        </div>
+    </div>
 
 
-      const data = await request();
-      const doms = data.list.map(item=>{
-        const container = document.createElement('div')
-        container.setAttribute('class',container)
 
-        container.innerHTML = item.stem
-        paper.appendChild(container)
-      })
-    };
-  </script>
+
+
+
+</body>
+<script type="text/javascript" src="../static/js/base.js"></script>
+<script>
+
+</script>
+
 </html>
