@@ -1,0 +1,166 @@
+<!--
+ * @Author: WangMaoqing 1035311011@qq.com
+ * @Date: 2023-05-30 20:22:01
+ * @LastEditors: WangMaoqing 1035311011@qq.com
+ * @LastEditTime: 2023-05-31 16:35:08
+ * @FilePath: /分页模版 /index.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./data.js"></script>
+    <style>
+      body {
+        text-align: center;
+      }
+      section {
+        margin: auto;
+        border: 1px solid lightgray;
+        width: 900px;
+        height: 1000px;
+        padding: 0px 88px;
+        text-align: left;
+        /* overflow: hidden; */
+        box-sizing: border-box;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+      section:not(:last-child) {
+        margin-bottom: 20px;
+      }
+
+      .hidden-container {
+        visibility: hidden;
+        position: absolute;
+        top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <section class="title-paper">
+      <h1>四年级2班-朱小萌-数学-个性化错题本</h1>
+    </section> -->
+    <!-- <section class="question-paper"></section> -->
+  </body>
+  <script>
+    // var xhr = new XMLHttpRequest();
+    // xhr.open(
+    //   "GET",
+    //   "https://sclass.jinmaoedu.com/admin-api/qc/cloud/getQuestionList?pageNo=1&pageSize=100&chapterId=23336&stageId=1&subjectId=3",
+    //   false
+    // );
+    // xhr.setRequestHeader(
+    //   "Authorization",
+    //   "Bearer a7a044967aac43a08dcccdfdf35f98a1"
+    // );
+
+    // xhr.onreadystatechange = function () {
+    //   if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+    //     var data = JSON.parse(xhr.responseText).data;
+
+    //     var paper = document.createElement("section");
+    //     data.list.map((item) => {
+    //       var container = document.createElement("div");
+    //       container.setAttribute("class", container);
+    //       container.innerHTML = item.stem;
+    //       paper.appendChild(container);
+    //     });
+
+    //     document.body.appendChild(paper);
+    //   }
+    // };
+
+    // xhr.send();
+  </script>
+
+  <script>
+    // var xhr = new XMLHttpRequest();
+
+
+  </script>
+
+  <script>
+    data = data.data.list;
+
+    let currentPaper = document.createElement("section");
+
+    document.body.appendChild(currentPaper);
+
+    const paperHeight = currentPaper.clientHeight - 2;
+
+    let accumulationheight = 0;
+
+    var xhr = new XMLHttpRequest();
+
+    data.forEach((item, index) => {
+      const quesDom = document.createElement("div");
+      quesDom.innerHTML = `<b>第${index}题</b>&nbsp;` + item.stem;
+
+      currentPaper.appendChild(quesDom);
+
+      const quesHeight = quesDom.clientHeight;
+      accumulationheight += quesHeight;
+
+      if (accumulationheight > paperHeight) {
+        currentPaper.removeChild(quesDom);
+        currentPaper = document.createElement("section");
+        accumulationheight = quesHeight;
+        currentPaper.appendChild(quesDom);
+        document.body.appendChild(currentPaper);
+      }
+
+      // const quesDom = document.createElement("div");
+      // quesDom.innerHTML = `<b>第${index}题</b>&nbsp;` + item.stem;
+
+      // currentPaper.appendChild(quesDom);
+
+      // const imgs = quesDom.querySelectorAll("img");
+
+      // if (imgs.lenght > 0) {
+      //   for (let index = 0; index < imgs.length; index++) {
+      //     const img = imgs[index];
+      //     xhr.open("GET", img.src, false);
+      //     xhr.send();
+
+      //     if (index == imgs.length - 1) {
+      //       if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+      //         const quesHeight = quesDom.clientHeight;
+      //         accumulationheight += quesHeight;
+
+      //         if (accumulationheight > paperHeight) {
+      //           currentPaper.removeChild(quesDom);
+      //           currentPaper = document.createElement("section");
+      //           accumulationheight = quesHeight;
+      //           currentPaper.appendChild(quesDom);
+      //           document.body.appendChild(currentPaper);
+      //         }
+      //       }
+      //     }
+      //   }
+      // } else {
+      //   const quesHeight = quesDom.clientHeight;
+
+      //   accumulationheight += quesHeight;
+
+      //   if (accumulationheight > paperHeight) {
+      //     currentPaper.removeChild(quesDom);
+      //     currentPaper = document.createElement("section");
+      //     accumulationheight = quesHeight;
+      //     currentPaper.appendChild(quesDom);
+      //     document.body.appendChild(currentPaper);
+      //   }
+      // }
+    });
+    // document.body.appendChild(paper)
+
+    // console.log(paper.clientHeight);
+  </script>
+</html>
