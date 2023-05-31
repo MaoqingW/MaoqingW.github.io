@@ -2,7 +2,7 @@
  * @Author: WangMaoqing 1035311011@qq.com
  * @Date: 2023-05-30 20:22:01
  * @LastEditors: WangMaoqing 1035311011@qq.com
- * @LastEditTime: 2023-05-31 10:27:04
+ * @LastEditTime: 2023-05-31 10:46:58
  * @FilePath: /分页模版 /index.html
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -33,12 +33,7 @@
     <section class="title-paper">
       <h1>四年级2班-朱小萌-数学-个性化错题本</h1>
     </section>
-
-    <section class="question-paper">
-      <div class="container">
-        <div class="question">4前面的一个数是{#blank#}1{#/blank#}，后面的一个数是{#blank#}2{#/blank#}</div>
-      </div>
-    </section>
+    <section class="question-paper"></section>
   </body>
 
   <script>
@@ -60,18 +55,33 @@
   </script>
 
   <script>
-    window.onload = async () => {
-      const paper = document.querySelector('.question-paper')
+    // window.onload = async () => {
 
+    const paper = document.querySelector(".question-paper");
+    request().then((data) => {
+      // const container = document.createElement("div");
+      // container.setAttribute("class", container);
 
-      const data = await request();
-      const doms = data.list.map(item=>{
-        const container = document.createElement('div')
-        container.setAttribute('class',container)
+      // container.innerHTML = item.stem;
+      // paper.appendChild(container);
 
-        container.innerHTML = item.stem
-        paper.appendChild(container)
-      })
-    };
+      const doms = data.list.map((item) => {
+        const container = document.createElement("div");
+        container.setAttribute("class", container);
+
+        container.innerHTML = item.stem;
+        paper.appendChild(container);
+      });
+    });
+
+    // const data = await request();
+    // const doms = data.list.map(item=>{
+    //   const container = document.createElement('div')
+    //   container.setAttribute('class',container)
+
+    //   container.innerHTML = item.stem
+    //   paper.appendChild(container)
+    // })
+    // };
   </script>
 </html>
