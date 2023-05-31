@@ -2,7 +2,7 @@
  * @Author: WangMaoqing 1035311011@qq.com
  * @Date: 2023-05-30 20:22:01
  * @LastEditors: WangMaoqing 1035311011@qq.com
- * @LastEditTime: 2023-05-31 11:09:44
+ * @LastEditTime: 2023-05-31 11:19:45
  * @FilePath: /分页模版 /index.html
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -45,54 +45,6 @@
       //   });
       // }
     </script>
-    <script>
-      // const paper = document.createElement("section");
-      // paper.setAttribute("class", "question-paper");
-      // request().then((data) => {
-      //   const doms = data.list.map((item) => {
-      //     const container = document.createElement("div");
-      //     container.setAttribute("class", container);
-
-      //     container.innerHTML = item.stem;
-      //     paper.appendChild(container);
-      //   });
-
-      //   document.body.appendChild(paper);
-      // });
-
-      var xhr = new XMLHttpRequest();
-      xhr.open(
-        "GET",
-        "https://sclass.jinmaoedu.com/admin-api/qc/cloud/getQuestionList?pageNo=1&pageSize=100&chapterId=23336&stageId=1&subjectId=3",
-        true
-      );
-      xhr.setRequestHeader(
-        "Authorization",
-        "Bearer a7a044967aac43a08dcccdfdf35f98a1"
-      );
-
-      xhr.onload = function (data) {
-        // 请求结束后，在此处写处理代码
-        // console.log(data);
-      };
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-          var data = JSON.parse(xhr.responseText).data;
-
-          var paper = document.createElement("section");
-          data.list.map((item) => {
-            var container = document.createElement("div");
-            container.setAttribute("class", container);
-            container.innerHTML = item.stem;
-            paper.appendChild(container);
-          });
-
-          document.body.appendChild(paper);
-        }
-      };
-
-      xhr.send();
-    </script>
   </head>
   <body>
     <section class="title-paper">
@@ -131,4 +83,54 @@
     // })
     // };
   </script> -->
+
+
+  <script>
+    // const paper = document.createElement("section");
+    // paper.setAttribute("class", "question-paper");
+    // request().then((data) => {
+    //   const doms = data.list.map((item) => {
+    //     const container = document.createElement("div");
+    //     container.setAttribute("class", container);
+
+    //     container.innerHTML = item.stem;
+    //     paper.appendChild(container);
+    //   });
+
+    //   document.body.appendChild(paper);
+    // });
+
+    var xhr = new XMLHttpRequest();
+    xhr.open(
+      "GET",
+      "https://sclass.jinmaoedu.com/admin-api/qc/cloud/getQuestionList?pageNo=1&pageSize=100&chapterId=23336&stageId=1&subjectId=3",
+      false
+    );
+    xhr.setRequestHeader(
+      "Authorization",
+      "Bearer a7a044967aac43a08dcccdfdf35f98a1"
+    );
+
+    xhr.onload = function (data) {
+      // 请求结束后，在此处写处理代码
+      // console.log(data);
+    };
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        var data = JSON.parse(xhr.responseText).data;
+
+        var paper = document.createElement("section");
+        data.list.map((item) => {
+          var container = document.createElement("div");
+          container.setAttribute("class", container); 
+          container.innerHTML = item.stem;
+          paper.appendChild(container);
+        });
+
+        document.body.appendChild(paper);
+      }
+    };
+
+    xhr.send();
+  </script>
 </html>
